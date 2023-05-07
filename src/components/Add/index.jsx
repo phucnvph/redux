@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addAction } from '../../redux/actions';
+import TodolistSlice from '../Todolist/TodolistSlice';
+import axios from 'axios';
+
 
 function Add() {
     const dispatch = useDispatch();
@@ -11,7 +13,15 @@ function Add() {
 
         if (todo.trim() === '') { return false; }
 
-        dispatch(addAction({ id: Math.random(), name: todo, price: 6000, status: false }));
+        dispatch(TodolistSlice.actions.addAction({ 
+            id: Math.random(), 
+            name: todo
+        }));
+
+        axios.post('https://646253e84dca1a6613438fe1.mockapi.io/todolist', { 
+            id: Math.random(), 
+            name: todo
+        });
 
         setTodo('');
     }
@@ -22,7 +32,7 @@ function Add() {
     }
 
     return (
-        <div className="Add">
+        <div className="pt-3 pb-3">
             <div>
                 <input value={todo} onChange={handelChangeAdd} />
                 <button onClick={handelClick}>Add</button>

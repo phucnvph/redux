@@ -1,7 +1,7 @@
 
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { searchAction } from '../../redux/actions';
+import FilterSlice from './FilterSlice';
 
 const Filter = () => {
     const dispatch = useDispatch();
@@ -13,13 +13,13 @@ const Filter = () => {
     }
 
     const handelSearch = () => {
-        dispatch(searchAction(search));
+        dispatch(FilterSlice.actions.searchAction(search));
     }
     return (
         <>
-            <div>
+            <div className='pb-3'>
                 <input value={search} onChange={handelChangeSearch} />
-                <button onClick={handelSearch}>Auto Search</button>
+                <button onClick={handelSearch}>Search</button>
             </div>
         </>
     )

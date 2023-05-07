@@ -4,7 +4,7 @@ import Add from './components/Add';
 
 function App() {
   return (
-    <div className="App">
+    <div className="container">
       <Add />
       <Filter />
       <TodoList />
